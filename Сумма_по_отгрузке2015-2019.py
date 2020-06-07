@@ -22,7 +22,7 @@ for year in date_list:
 
     df2015 = df2015[['docs', 'sum_ship']]
     data_sale = data_sale.append(df2015)
-data_sale = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'sum'})
+data_sale = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'count'})
 # data_ship = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'count'})
 # print(data_sale.head())
 
