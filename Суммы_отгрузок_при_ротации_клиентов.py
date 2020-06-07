@@ -37,14 +37,15 @@ for year in date_list:
     df2015 = df2015.fillna(0)
     df2015 = df2015[df2015.sum_ship != 0]
     # print(f'{year}', df2015.docs.count())
-    clients.append(df2015.docs.count())
-    clients0.append(df2015.sum_ship[df2015.sum_ship < 30000 * 12].count())
-    clients30.append(df2015.sum_ship[(df2015.sum_ship < 50000 * 12) & (df2015.sum_ship >= 30000 * 12)].count())
-    clients50.append(df2015.sum_ship[(df2015.sum_ship < 100000 * 12) & (df2015.sum_ship >= 50000 * 12)].count())
-    clients100.append(df2015.sum_ship[(df2015.sum_ship < 300000 * 12) & (df2015.sum_ship >= 100000 * 12)].count())
-    clients300.append(df2015.sum_ship[(df2015.sum_ship < 500000 * 12) & (df2015.sum_ship >= 300000 * 12)].count())
-    clients500.append(df2015.sum_ship[df2015.sum_ship >= 500000 * 12].count())
+    clients.append(df2015.sum_ship.sum())
+    clients0.append(df2015.sum_ship[df2015.sum_ship < 30000 * 12].sum())
+    clients30.append(df2015.sum_ship[(df2015.sum_ship < 50000*12) & (df2015.sum_ship >= 30000 * 12)].sum())
+    clients50.append(df2015.sum_ship[(df2015.sum_ship < 100000*12) & (df2015.sum_ship >= 50000 * 12)].sum())
+    clients100.append(df2015.sum_ship[(df2015.sum_ship < 300000*12) & (df2015.sum_ship >= 100000 * 12)].sum())
+    clients300.append(df2015.sum_ship[(df2015.sum_ship < 500000*12) & (df2015.sum_ship >= 300000 * 12)].sum())
+    clients500.append(df2015.sum_ship[df2015.sum_ship >= 500000 * 12].sum())
     # clients0.append(df2015.docs.count())
+    # print(sales['clients0']+sales['clients30']+sales['clients50']+sales['clients100']+sales['clients300']+sales['clients500'])
 data_sale = pd.DataFrame(sales)
 
 # print(data_sale)
@@ -53,7 +54,7 @@ ax.set(title='trading')  # наименование графика
 
 #  Добавляем подписи к осям:
 ax.set_xlabel('year')
-ax.set_ylabel('count of clients')
+ax.set_ylabel('суммы отгрузок')
 
 ax.tick_params(labelrotation=45)
 # plt.bar(data_sale.year + .1, data_sale.clients, width=.1, label=f'clients all')

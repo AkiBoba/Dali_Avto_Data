@@ -22,7 +22,7 @@ for year in date_list:
 
     df2015 = df2015[['docs', 'sum_ship']]
     data_sale = data_sale.append(df2015)
-data_sale = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'count'})
+data_sale = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'sum'})
 # data_ship = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'count'})
 # print(data_sale.head())
 
@@ -31,7 +31,7 @@ ax.set(title='trading')  # наименование графика
 
 #  Добавляем подписи к осям:
 ax.set_xlabel('year')
-ax.set_ylabel('количество док-в продаж, шт')
+ax.set_ylabel('Суммы отгрузок,100*млн., руб., шт')
 
 ax.tick_params(labelrotation=45)
 plt.plot(data_sale.docs, data_sale['sum_ship'], label=f'2015-2019 year')
