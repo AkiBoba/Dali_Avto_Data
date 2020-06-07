@@ -54,7 +54,7 @@ ax.set(title='trading')  # наименование графика
 
 #  Добавляем подписи к осям:
 ax.set_xlabel('year')
-ax.set_ylabel('суммы отгрузок')
+ax.set_ylabel('суммы отгрузок, 10*млн. руб.')
 
 ax.tick_params(labelrotation=45)
 # plt.bar(data_sale.year + .1, data_sale.clients, width=.1, label=f'clients all')
