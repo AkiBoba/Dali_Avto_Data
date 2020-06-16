@@ -39,22 +39,22 @@ for year in date_list:
     df2015 = df2015[df2015.sum_ship != 0]
     # print(f'{year}', df2015.docs.count())
 
-    clients0.append((df2015.prof_ship[df2015.sum_ship < 30000 * 12].sum()/df2015.price_ship[df2015.sum_ship < 30000 * 12].sum())*100)
+    clients0.append((df2015.prof_ship[df2015.sum_ship < 30000 * 12].sum() / df2015.price_ship[
+        df2015.sum_ship < 30000 * 12].sum()) * 100)
     clients30.append(
-        (df2015.prof_ship[(df2015.sum_ship < 50000*12) & (df2015.sum_ship >= 30000 * 12)].sum() / df2015.price_ship[
-            (df2015.sum_ship < 50000*12) & (df2015.sum_ship >= 30000 * 12)].sum()) * 100)
+        (df2015.prof_ship[(df2015.sum_ship < 50000 * 12) & (df2015.sum_ship >= 30000 * 12)].sum() / df2015.price_ship[
+            (df2015.sum_ship < 50000 * 12) & (df2015.sum_ship >= 30000 * 12)].sum()) * 100)
     clients50.append(
-        (df2015.prof_ship[(df2015.sum_ship < 100000*12) & (df2015.sum_ship >= 50000 * 12)].sum() / df2015.price_ship[
-            (df2015.sum_ship < 100000*12) & (df2015.sum_ship >= 50000 * 12)].sum()) * 100)
+        (df2015.prof_ship[(df2015.sum_ship < 100000 * 12) & (df2015.sum_ship >= 50000 * 12)].sum() / df2015.price_ship[
+            (df2015.sum_ship < 100000 * 12) & (df2015.sum_ship >= 50000 * 12)].sum()) * 100)
     clients100.append(
-        (df2015.prof_ship[(df2015.sum_ship < 300000*12) & (df2015.sum_ship >= 100000 * 12)].sum() / df2015.price_ship[
-            (df2015.sum_ship < 300000*12) & (df2015.sum_ship >= 100000 * 12)].sum()) * 100)
+        (df2015.prof_ship[(df2015.sum_ship < 300000 * 12) & (df2015.sum_ship >= 100000 * 12)].sum() / df2015.price_ship[
+            (df2015.sum_ship < 300000 * 12) & (df2015.sum_ship >= 100000 * 12)].sum()) * 100)
     clients300.append(
-        (df2015.prof_ship[(df2015.sum_ship < 500000*12) & (df2015.sum_ship >= 300000 * 12)].sum() / df2015.price_ship[
-            (df2015.sum_ship < 500000*12) & (df2015.sum_ship >= 300000 * 12)].sum()) * 100)
+        (df2015.prof_ship[(df2015.sum_ship < 500000 * 12) & (df2015.sum_ship >= 300000 * 12)].sum() / df2015.price_ship[
+            (df2015.sum_ship < 500000 * 12) & (df2015.sum_ship >= 300000 * 12)].sum()) * 100)
     clients500.append((df2015.prof_ship[df2015.sum_ship >= 500000 * 12].sum() / df2015.price_ship[
         df2015.sum_ship >= 500000 * 12].sum()) * 100)
-
 
     # clients0.append(df2015.docs.count())
     # print(sales['clients0']+sales['clients30']+sales['clients50']+sales['clients100']+sales['clients300']+sales['clients500'])
@@ -70,12 +70,30 @@ ax.set_ylabel('Процент наценки по отгрузке, %')
 
 ax.tick_params(labelrotation=45)
 # plt.bar(data_sale.year + .1, data_sale.clients, width=.1, label=f'clients all')
-plt.plot(data_sale.year + .2, data_sale.clients0,  label=f' < 30 000 in month')
-plt.plot(data_sale.year + .3, data_sale.clients30,  label=f' >= 30 000 in month')
-plt.plot(data_sale.year + .4, data_sale.clients50,  label=f' >= 50 000 in month')
-plt.plot(data_sale.year + .5, data_sale.clients100, label=f' >= 100 000 in month')
-plt.plot(data_sale.year + .6, data_sale.clients300,  label=f' >= 300 000 in month')
-plt.plot(data_sale.year + .7, data_sale.clients500,  label=f' >= 500 000 in month')
+plt.subplot(611)
+plt.plot(data_sale.year, data_sale.clients0, color='b', label=f' сумма отгрузок < 30 тр в мес')
+plt.grid()
+plt.legend()
+plt.subplot(612)
+plt.plot(data_sale.year, data_sale.clients30, color='r', label=f' 50 > сумма отгрузок >= 30 тр в мес')
+plt.grid()
+plt.legend()
+plt.subplot(613)
+plt.plot(data_sale.year, data_sale.clients50, color='c', label=f' 100 > сумма отгрузок >= 50 тр в мес')
+plt.grid()
+plt.legend()
+plt.subplot(614)
+plt.plot(data_sale.year, data_sale.clients100, color='y', label=f' 300 > сумма отгрузок >= 100 тр в мес')
+plt.grid()
+plt.legend()
+plt.subplot(615)
+plt.plot(data_sale.year, data_sale.clients300, color='k', label=f' 500 > сумма отгрузок >= 300 тр в мес')
+plt.grid()
+plt.legend()
+plt.subplot(616)
+plt.plot(data_sale.year, data_sale.clients500, color='g', label=f' сумма отгрузок >= 500 тр в мес')
+plt.grid()
+plt.legend()
 # ax.text(2017, 500, 'всего клиентов')
 #
 # ax.text(2017, 300, 'клиенты от 30 тр')

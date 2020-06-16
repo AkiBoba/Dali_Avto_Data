@@ -24,7 +24,7 @@ for year in date_list:
     data_sale = data_sale.append(df2015)
 data_sale = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'count'})
 # data_ship = data_sale.groupby('docs', as_index=False).agg({'sum_ship': 'count'})
-# print(data_sale.head())
+print(data_sale.head())
 
 fig, ax = plt.subplots()  # подготовка графиков
 ax.set(title='trading')  # наименование графика
@@ -37,6 +37,7 @@ ax.tick_params(labelrotation=45)
 plt.plot(data_sale.docs, data_sale['sum_ship'], label=f'2015-2019 year')
 # plt.plot(data_ship.docs, data_ship['sum_ship'])
 ax.legend()
+plt.grid()
 # fig.set_figwidth(12)
 # fig.set_figheight(12)
-plt.show()
+# plt.show()
