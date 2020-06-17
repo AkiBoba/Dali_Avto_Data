@@ -33,6 +33,7 @@ for year in date_list:
                       'pay_per']
     df2015 = df2015[['docs', 'sum_ship']]
     df2015 = df2015[df2015.docs.str.contains('Реализация') == True]
+    df2015 = df2015[df2015.docs.str.contains('ТАЦ') != True]
     df2015 = df2015[df2015.docs.str.contains('Итого') != True]  #
     df2015 = df2015.fillna(0)
     df2015 = df2015[df2015.sum_ship != 0]
